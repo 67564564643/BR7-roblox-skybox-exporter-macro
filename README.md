@@ -7,7 +7,7 @@ Important info about this macro:
 For this macro to work as intended, palettes should be set to default in Bryce 7 and the user should be on **1920x1080** resolution, **100%** scale and **landscape** display orientation for your display settings. 
 The macro exports the files in 112.5 FOV and 100% scaling, may add features to the macro later on to modify the numbers yourself in the GUI given.
 
-Before using the macro, for proper outcome the numbers regarding pan v and h are not changed and neither is the aspect ratio, to make sure they are proper have the pan values set at 0 and on a 1:1 aspect ratio which is 512x512 resolution
+Before using the macro, for proper outcome the numbers regarding pan v and h are not changed and neither is the aspect ratio, to make sure they are proper have the pan values set at 0 and on a 1:1 aspect ratio for the document which is 512x512 resolution
 
 There are two ways to run this macro
 This macro can be run by the exe file itself, or the python script, both are provided allowing you to edit some parts of the python script to your own needs if necessary
