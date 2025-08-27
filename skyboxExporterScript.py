@@ -68,7 +68,7 @@ def open_file_six_times():
         if count_bryce_processes() > 0:
             confirm = messagebox.askyesno(
                 "Bryce is running",
-                "Bryce 7 is currently running.\n\nDo you want to close it? Save your work first!"
+                "Bryce 7 is currently running.\n\nDo you want to close it? MAKE SURE TO SAVE ANY UNSAVED WORK!"
             )
             if not confirm:
                 return
@@ -217,3 +217,4 @@ tk.Button(frame, text="Browse BR7 File", command=browse_br7_file).grid(row=1, co
 tk.Button(frame, text="Open BR7 scenes", command=open_file_six_times, width=20).grid(row=2, column=0, columnspan=2, pady=10)
 tk.Button(frame, text='Run export macro', command = run_ahk_macro, width=18).grid(row=3, column = 0, columnspan=2, pady=10)
 root.mainloop()
+
