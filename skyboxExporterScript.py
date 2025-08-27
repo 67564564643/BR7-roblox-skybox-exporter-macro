@@ -9,7 +9,6 @@ import tkinter as tk
 from tkinter import filedialog, messagebox
 import psutil
 import subprocess
-from PIL import Image
 
 
 DELAY = 1
@@ -23,7 +22,7 @@ color = ahk.pixel_get_color
 press = ahk.key_press
 views = ['Up', 'Down', 'Front', 'Back', 'Right', 'Left']
 xPos = ['-90', '90', '0', '0', '0,', '0']
-yPos = ['0', '0', '0', '180', '270', '90']
+yPos = ['270', '270', '0', '180', '270', '90']
 opened_files = []
 up_file = []
 down_file = []
@@ -57,24 +56,6 @@ def browse_br7_file():
         entry_var.set(file_path)
         global opened_files
         opened_files = [] 
-def browse_up_file():
-    file_path = filedialog.askopenfilename(
-        title="Select up png",
-        filetypes=[("pngs", "*.png")]
-    )
-    if file_path:
-        entry_var2.set(file_path)
-        global up_file
-        up_file=[]
-def browse_down_file():
-    file_path = filedialog.askopenfilename(
-        title="Select down png",
-        filetypes=[("pngs", "*.png")]
-    )
-    if file_path:
-        entry_var3.set(file_path)
-        global down_file
-        down_file=[]
 def open_file_six_times():
     file_path = entry_var.get()
     if not file_path or not os.path.isfile(file_path):
@@ -197,24 +178,6 @@ def position(x, y, w):
 def macro(num):
     movement()
     position(xPos[num],yPos[num], views[num])
-def adjust_up():
-    file_path = entry_var2.get()
-    if not file_path or not os.path.isfile(file_path):
-        messagebox.showerror("Error", "Please select a png.")
-        return
-    image = Image.open(file_path)
-    rotate = image.rotate(90, expand=True)
-    rotate.save(file_path)
-    messagebox.showinfo("Rotation Success", "Rotated image 90 CCW")
-def adjust_down():
-    file_path = entry_var3.get()
-    if not file_path or not os.path.isfile(file_path):
-        messagebox.showerror("Error", "Please select a png.")
-        return
-    image = Image.open(file_path)
-    rotate = image.rotate(270, expand=True)
-    rotate.save(file_path)
-    messagebox.showinfo("Rotation Success", "Rotated image 90 CW")
 def run_ahk_macro():
     global index
     running = 1
@@ -241,7 +204,7 @@ def run_ahk_macro():
     running = 1
 root = tk.Tk()
 root.title("BR7 File Opener")
-root.geometry("550x320")
+root.geometry("460x180")
 entry_var = tk.StringVar()
 entry_var2 = tk.StringVar()
 entry_var3 = tk.StringVar()
@@ -252,13 +215,5 @@ tk.Label(frame, text="Bryce 7 File:").grid(row=0, column=0, sticky="w")
 tk.Entry(frame, textvariable=entry_var, width=40).grid(row=1, column=0, padx=5, pady=5)
 tk.Button(frame, text="Browse BR7 File", command=browse_br7_file).grid(row=1, column=1, padx=5, pady=5)
 tk.Button(frame, text="Open BR7 scenes", command=open_file_six_times, width=20).grid(row=2, column=0, columnspan=2, pady=10)
-tk.Button(frame, text='run macro', command = run_ahk_macro, width=10).grid(row=3, column = 0, columnspan=2, pady=10)
-tk.Label(frame, text="up image:").grid(row=4, column=0, sticky="w")
-tk.Entry(frame, textvariable=entry_var2, width=40).grid(row=5, column=0, padx=5, pady=5)
-tk.Button(frame, text="Browse 'up' file", command=browse_up_file).grid(row=5, column=1, padx=5, pady=5)
-tk.Label(frame, text="down image:").grid(row=6, column=0, sticky="w")
-tk.Entry(frame, textvariable=entry_var3, width=40).grid(row=7, column=0, padx=5, pady=5)
-tk.Button(frame, text="Browse 'down' file", command=browse_down_file).grid(row=7, column=1, padx=5, pady=5)
-tk.Button(frame, text="Rotate 'up' image 90 CCW", command=adjust_up, width=20).grid(row=8, column=0, columnspan=2, pady=10)
-tk.Button(frame, text="Rotate 'down' image 90 CW", command=adjust_down, width=20).grid(row=8, column=2, columnspan=2, pady=10)
+tk.Button(frame, text='Run export macro', command = run_ahk_macro, width=18).grid(row=3, column = 0, columnspan=2, pady=10)
 root.mainloop()
